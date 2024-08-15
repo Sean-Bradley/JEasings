@@ -1,0 +1,16 @@
+{
+  "name": "jeasings",
+  "version": "1.0.0",
+  "description": "A JavaScript easing library",
+  "homepage": "https://github.com/Sean-Bradley/JEasings",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Sean Bradley",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sean-Bradley/JEasings.git"
+  }
+}
