@@ -275,7 +275,7 @@ var JEASINGS;
         Object.keys(jeasings).forEach((j) => {
             jeasings[j].update(t);
         });
-        console.log(Object.keys(jeasings).length);
+        //console.log(Object.keys(jeasings).length)
     }
     JEASINGS.update = update;
 })(JEASINGS || (JEASINGS = {}));
