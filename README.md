@@ -2,10 +2,9 @@
 
 A JavaScript module for interpolating numerical values.
 
-> **Note**
->
+> [!NOTE]
 > JEASINGS API based on Tween.js release 1 : https://github.com/sole/tween.js/blob/r1/src/Tween.js
->
+> 
 > Tween.js r1 License: https://github.com/sole/tween.js/blob/r1/LICENSE
 
 ## Usage
