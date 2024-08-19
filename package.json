@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "A JavaScript easing library",
   "homepage": "https://github.com/Sean-Bradley/JEasings",
-  "main": "index.js",
+  "main": "./dist/JEeasings.js",
+  "module": "./dist/JEeasings.js",
   "scripts": {
     "dev": "tsc -p ./src -w",
     "build": "tsc -p ./src --declaration"
