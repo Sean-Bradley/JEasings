@@ -10,7 +10,9 @@ Tween.js r1 : MIT License : https://github.com/sole/tween.js/blob/r1/LICENSE
 
 ### CDN
 
-https://cdn.jsdelivr.net/gh/Sean-Bradley/JEasings@main/dist/JEeasings.js
+```javascript
+import JEASINGS from 'https://cdn.jsdelivr.net/gh/Sean-Bradley/JEasings@main/dist/JEeasings.js'
+```
 
 ### NPM
 
@@ -18,4 +20,12 @@ https://cdn.jsdelivr.net/gh/Sean-Bradley/JEasings@main/dist/JEeasings.js
 npm install jeasings
 ```
 
-### Usage
+```javascript
+import JEASINGS from 'jeasings'
+```
+
+### Examples
+
+House : https://sbedit.net/2820edac35dd5035904ca2bf60518d1c3a79d359
+
+Latitide Longitude : https://sbedit.net/50930f163a24650e0e84af66a8fbed8820a380b7
