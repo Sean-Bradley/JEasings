@@ -1,80 +1,85 @@
 declare namespace JEASINGS {
     const Linear: {
-        EaseNone: (v: number) => number;
+        None: (v: number) => number;
     };
     const Quadratic: {
-        EaseIn: (v: number) => number;
-        EaseOut: (v: number) => number;
-        EaseInOut: (v: number) => number;
+        In: (v: number) => number;
+        Out: (v: number) => number;
+        InOut: (v: number) => number;
     };
     const Cubic: {
-        EaseIn: (v: number) => number;
-        EaseOut: (v: number) => number;
-        EaseInOut: (v: number) => number;
+        In: (v: number) => number;
+        Out: (v: number) => number;
+        InOut: (v: number) => number;
     };
     const Quartic: {
-        EaseIn: (v: number) => number;
-        EaseOut: (v: number) => number;
-        EaseInOut: (v: number) => number;
+        In: (v: number) => number;
+        Out: (v: number) => number;
+        InOut: (v: number) => number;
     };
     const Quintic: {
-        EaseIn: (v: number) => number;
-        EaseOut: (v: number) => number;
-        EaseInOut: (v: number) => number;
+        In: (v: number) => number;
+        Out: (v: number) => number;
+        InOut: (v: number) => number;
     };
     const Sinusoidal: {
-        EaseIn: (v: number) => number;
-        EaseOut: (v: number) => number;
-        EaseInOut: (v: number) => number;
+        In: (v: number) => number;
+        Out: (v: number) => number;
+        InOut: (v: number) => number;
     };
     const Exponential: {
-        EaseIn: (v: number) => number;
-        EaseOut: (v: number) => number;
-        EaseInOut: (v: number) => number;
+        In: (v: number) => number;
+        Out: (v: number) => number;
+        InOut: (v: number) => number;
     };
     const Circular: {
-        EaseIn: (v: number) => number;
-        EaseOut: (v: number) => number;
-        EaseInOut: (v: number) => number;
+        In: (v: number) => number;
+        Out: (v: number) => number;
+        InOut: (v: number) => number;
     };
     const Elastic: {
-        EaseIn: (v: number) => number;
-        EaseOut: (v: number) => number;
-        EaseInOut: (v: number) => number;
+        In: (v: number) => number;
+        Out: (v: number) => number;
+        InOut: (v: number) => number;
     };
     const Back: {
-        EaseIn: (v: number) => number;
-        EaseOut: (v: number) => number;
-        EaseInOut: (v: number) => number;
+        In: (v: number) => number;
+        Out: (v: number) => number;
+        InOut: (v: number) => number;
     };
     const Bounce: {
-        EaseIn: (v: number) => number;
-        EaseOut: (v: number) => number;
-        EaseInOut: (v: number) => number;
+        In: (v: number) => number;
+        Out: (v: number) => number;
+        InOut: (v: number) => number;
     };
     class JEasing {
-        key: {
+        object: {
             [key: string]: any;
         };
+        id: number;
         duration: number;
         startTime: number;
-        delayTime: number;
+        delayStart: number;
         startingProperties: {
-            [key: string]: any;
+            [key: string]: number;
         };
         finalProperties: {
-            [key: string]: any;
+            [key: string]: number;
         };
         deltaProperties: {
-            [key: string]: any;
+            [key: string]: number;
         };
         easingFunction: (v: number) => number;
-        constructor(key: object);
+        onUpdateCB: (() => void) | false;
+        onCompleteCB: (() => void) | false;
+        constructor(object: object);
         to: (properties: any, duration: number) => this;
         start: () => this;
         update: (t: number) => true | undefined;
         easing: (f: (v: number) => number) => this;
         delay: (t: number) => this;
+        onUpdate: (f: () => {}) => this;
+        onComplete: (f: () => {}) => this;
     }
     function update(): void;
 }
