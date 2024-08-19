@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Sean Bradley" />
+    <title>JEASINGS</title>
+    <meta name="description" content="Three.js TypeScript Tutorials by Sean Bradley : https://sbcode.net/threejs" />
+    <style>
+      body {
+        overflow: hidden;
+        margin: 0px;
+      }
+
+      #instructions {
+        color: white;
+        position: absolute;
+        left: 50%;
+        top: 10px;
+        margin-left: -220px;
+        font-family: monospace;
+      }
+    </style>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://esm.sh/three@0.167.1",
+          "three/addons/": "https://esm.sh/three@0.167.1/addons/",
+          "@monogrid/gainmap-js": "https://esm.sh/@monogrid/gainmap-js@3.0.5"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="instructions">Doubleclick the floor to make the monkey head bounce</div>
+    <script type="module">
+      import * as THREE from 'three'
+      import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
+      import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
+      import { HDRJPGLoader } from '@monogrid/gainmap-js'
+      import Stats from 'three/addons/libs/stats.module.js'
+      import { Lensflare, LensflareElement } from 'three/addons/objects/Lensflare.js'
+      import JEASINGS from './dist/JEeasings.js'
+
+      const scene = new THREE.Scene()
+
+      const gridHelper = new THREE.GridHelper()
+      gridHelper.position.y = -1
+      scene.add(gridHelper)
+
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100)
+      camera.position.set(-1, 0, 2)
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true })
+      renderer.toneMapping = THREE.ACESFilmicToneMapping
+      renderer.toneMappingExposure = 0.8
+      renderer.shadowMap.enabled = true
+      renderer.setSize(window.innerWidth, window.innerHeight)
+      document.body.appendChild(renderer.domElement)
+
+      new HDRJPGLoader(renderer).load(
+        'https://cdn.jsdelivr.net/gh/Sean-Bradley/assets@main/img/venice_sunset_1k.hdr.jpg',
+        (texture) => {
+          texture.renderTarget.texture.mapping = THREE.EquirectangularReflectionMapping
+          scene.environment = texture.renderTarget.texture
+        }
+      )
+
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight
+        camera.updateProjectionMatrix()
+        renderer.setSize(window.innerWidth, window.innerHeight)
+        render() //this line is unnecessary if you are re-rendering within the animation loop
+      })
+
+      const controls = new OrbitControls(camera, renderer.domElement)
+      controls.enableDamping = true
+      controls.addEventListener('change', render) //this line is unnecessary if you are re-rendering within the animation loop
+
+      let suzanne, plane
+
+      new GLTFLoader().load(
+        'https://cdn.jsdelivr.net/gh/Sean-Bradley/assets@main/models/suzanne_scene_p2.glb',
+        (gltf) => {
+          suzanne = gltf.scene.getObjectByName('Suzanne')
+          suzanne.castShadow = true
+          suzanne.material.map.colorSpace = THREE.LinearSRGBColorSpace
+
+          plane = gltf.scene.getObjectByName('Plane')
+          plane.scale.set(50, 1, 50)
+          plane.material.envMapIntensity = 0.05 // = new THREE.MeshPhongMaterial()
+          plane.receiveShadow = true
+
+          const spotLight = gltf.scene.getObjectByName('Spot')
+          spotLight.intensity /= 500
+          spotLight.castShadow = true
+          spotLight.target = suzanne
+
+          const textureLoader = new THREE.TextureLoader()
+          const textureFlare0 = textureLoader.load(
+            'https://cdn.jsdelivr.net/gh/Sean-Bradley/First-Car-Shooter@main/dist/client/img/lensflare0.png'
+          )
+
+          const lensflare = new Lensflare()
+          lensflare.addElement(new LensflareElement(textureFlare0, 1000, 0))
+          spotLight.add(lensflare)
+
+          scene.add(gltf.scene)
+
+          render()
+        }
+      )
+
+      const box = new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshNormalMaterial())
+      scene.add(box)
+
+      const raycaster = new THREE.Raycaster()
+
+      renderer.domElement.addEventListener('dblclick', (e) => {
+        const mouse = {
+          x: (e.clientX / renderer.domElement.clientWidth) * 2 - 1,
+          y: -(e.clientY / renderer.domElement.clientHeight) * 2 + 1
+        }
+
+        raycaster.setFromCamera(mouse, camera)
+
+        const intersects = raycaster.intersectObject(plane, false)
+
+        if (intersects.length > 0) {
+          const p = intersects[0].point
+          new JEASINGS.JEasing(suzanne.position)
+            .to(
+              {
+                x: p.x,
+                z: p.z
+              },
+              1000
+            )
+            .start()
+          new JEASINGS.JEasing(suzanne.position)
+            .to(
+              {
+                y: p.y + 3
+              },
+              500
+            )
+            .easing(JEASINGS.Cubic.Out)
+            // .onUpdate(() => render()) //this line is unnecessary if you are re-rendering within the animation loop
+            .start()
+            .onComplete(() => {
+              new JEASINGS.JEasing(suzanne.position)
+                .to(
+                  {
+                    y: p.y + 1
+                  },
+                  500
+                )
+                .easing(JEASINGS.Bounce.Out)
+                //.onUpdate(() => render()) //this line is unnecessary if you are re-rendering within the animation loop
+                .start()
+            })
+
+          new JEASINGS.JEasing(box.position)
+            .to(
+              {
+                x: p.x,
+                z: p.z
+              },
+              2000
+            )
+            .onUpdate(() => render())
+            .start()
+        }
+      })
+
+      const stats = new Stats()
+      document.body.appendChild(stats.dom)
+
+      function animate() {
+        requestAnimationFrame(animate)
+
+        controls.update()
+
+        JEASINGS.update()
+
+        //render()
+
+        stats.update()
+      }
+
+      function render() {
+        renderer.render(scene, camera)
+      }
+
+      animate()
+    </script>
+  </body>
+</html>
