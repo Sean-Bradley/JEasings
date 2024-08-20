@@ -81,6 +81,7 @@ declare namespace JEASINGS {
         onUpdate: (f: () => {}) => this;
         onComplete: (f: () => {}) => this;
     }
-    function update(): void;
+    const update: () => void;
+    const getLength: () => number;
 }
 export default JEASINGS;

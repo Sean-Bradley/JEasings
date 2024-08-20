@@ -71,7 +71,7 @@ Using the JEASINGS module to animate a HTML `div` position.
 
         JEASINGS.update() // Update JEASINGS in an animation loop.
 
-        // Update Box position after JEASINGS were re-evalueated.
+        // Update Box position after JEASINGS were re-evaluated.
         box.style.left = position.x + 'px'
         box.style.top = position.y + 'px'
       }
@@ -178,7 +178,7 @@ const part1 = new JEASINGS.JEasing(position)
   .delay(500)
   .easing(JEASINGS.Quadratic.InOut)
   .onComplete(() => {
-    part2.start() // Next start the part2 JEasing
+    part2.start() // When completed, start the part2 JEasing
   })
 //.start()
 
@@ -190,7 +190,7 @@ const part2 = new JEASINGS.JEasing(position)
   })
 //.start()
 
-part1.start() // Start the JEasing chain.
+part1.start() // Start the JEasing chain execution.
 
 function animate() {
   requestAnimationFrame(animate)

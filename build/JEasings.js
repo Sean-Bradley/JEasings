@@ -256,7 +256,6 @@ var JEASINGS;
                 }
                 this.onUpdateCB && this.onUpdateCB();
                 if (elapsed === 1) {
-                    console.log(elapsed);
                     delete jeasings[this.id];
                     this.onCompleteCB && this.onCompleteCB();
                 }
@@ -282,13 +281,14 @@ var JEASINGS;
     }
     JEASINGS.JEasing = JEasing;
     let t = 0;
-    function update() {
+    JEASINGS.update = () => {
         t = new Date().getTime();
         Object.keys(jeasings).forEach((j) => {
             jeasings[j].update(t);
         });
-        //console.log(Object.keys(jeasings).length)
-    }
-    JEASINGS.update = update;
+    };
+    JEASINGS.getLength = () => {
+        return Object.keys(jeasings).length;
+    };
 })(JEASINGS || (JEASINGS = {}));
 export default JEASINGS;

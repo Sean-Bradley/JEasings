@@ -26,7 +26,7 @@
   <body>
     <div id="box"></div>
     <script type="module">
-      import JEASINGS from 'https://esm.sh/jeasings'
+      import JEASINGS from './build/JEasings.js'
 
       const position = { x: 0, y: 0 } // Starting position.
 
@@ -39,7 +39,7 @@
 
         JEASINGS.update() // Update JEASINGS in an animation loop.
 
-        // Update Box position after JEASINGS were re-evalueated.
+        // Update Box position after JEASINGS were re-evaluated.
         box.style.left = position.x + 'px'
         box.style.top = position.y + 'px'
       }
