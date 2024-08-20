@@ -121,7 +121,9 @@ var JEASINGS;
             }
             else
                 s = (p / (2 * Math.PI)) * Math.asin(1 / a);
-            return -(a * Math.pow(2, 10 * (v -= 1)) * Math.sin(((v - s) * (2 * Math.PI)) / p));
+            return -(a *
+                Math.pow(2, 10 * (v -= 1)) *
+                Math.sin(((v - s) * (2 * Math.PI)) / p));
         },
         Out: (v) => {
             let s, a = 0.1, p = 0.4;
@@ -137,7 +139,7 @@ var JEASINGS;
             }
             else
                 s = (p / (2 * Math.PI)) * Math.asin(1 / a);
-            return a * Math.pow(2, -10 * v) * Math.sin(((v - s) * (2 * Math.PI)) / p) + 1;
+            return (a * Math.pow(2, -10 * v) * Math.sin(((v - s) * (2 * Math.PI)) / p) + 1);
         },
         InOut: (v) => {
             let s, a = 0.1, p = 0.4;
@@ -154,8 +156,15 @@ var JEASINGS;
             else
                 s = (p / (2 * Math.PI)) * Math.asin(1 / a);
             if ((v *= 2) < 1)
-                return -0.5 * (a * Math.pow(2, 10 * (v -= 1)) * Math.sin(((v - s) * (2 * Math.PI)) / p));
-            return a * Math.pow(2, -10 * (v -= 1)) * Math.sin(((v - s) * (2 * Math.PI)) / p) * 0.5 + 1;
+                return (-0.5 *
+                    (a *
+                        Math.pow(2, 10 * (v -= 1)) *
+                        Math.sin(((v - s) * (2 * Math.PI)) / p)));
+            return (a *
+                Math.pow(2, -10 * (v -= 1)) *
+                Math.sin(((v - s) * (2 * Math.PI)) / p) *
+                0.5 +
+                1);
         }
     };
     JEASINGS.Back = {
@@ -225,7 +234,8 @@ var JEASINGS;
                 this.startTime = new Date().getTime() + this.delayStart;
                 for (let property in this.finalProperties) {
                     this.startingProperties[property] = this.object[property];
-                    this.deltaProperties[property] = this.finalProperties[property] - this.object[property];
+                    this.deltaProperties[property] =
+                        this.finalProperties[property] - this.object[property];
                 }
                 this.id = id++;
                 jeasings[this.id] = this;
@@ -237,16 +247,18 @@ var JEASINGS;
                     return true;
                 }
                 elapsed = (t - this.startTime) / this.duration;
-                if (elapsed >= 1) {
+                elapsed > 1 && (elapsed = 1);
+                value = this.easingFunction(elapsed);
+                for (property in this.deltaProperties) {
+                    this.object[property] =
+                        this.startingProperties[property] +
+                            this.deltaProperties[property] * value;
+                }
+                this.onUpdateCB && this.onUpdateCB();
+                if (elapsed === 1) {
+                    console.log(elapsed);
                     delete jeasings[this.id];
                     this.onCompleteCB && this.onCompleteCB();
-                }
-                else {
-                    value = this.easingFunction(elapsed);
-                    for (property in this.deltaProperties) {
-                        this.object[property] = this.startingProperties[property] + this.deltaProperties[property] * value;
-                    }
-                    this.onUpdateCB && this.onUpdateCB();
                 }
             };
             this.easing = (f) => {

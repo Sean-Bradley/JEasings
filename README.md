@@ -36,7 +36,10 @@ Using the JEASINGS module to animate a HTML `div` position.
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>JEASINGS Module</title>
-    <meta name="description" content="Using the JEASINGS module to animate a Div position." />
+    <meta
+      name="description"
+      content="Using the JEASINGS module to animate a Div position."
+    />
     <style>
       body {
         overflow: hidden;
@@ -135,6 +138,72 @@ animate()
 ```
 
 Edit on [SBEDIT](https://sbedit.net/d6977245e64318a30356329d44bd900e4fd6ce38)
+
+### JEasing `onComplete` callback.
+
+When a JEasing comnpletes, we can run another script. E.g, start a new JEasing.
+
+```javascript
+new JEASINGS.JEasing(position)
+  .to({ x: 500, y: 250 }, 1500)
+  .delay(500)
+  .easing(JEASINGS.Quadratic.InOut)
+  .onUpdate(() => {
+    box.style.left = position.x + 'px'
+    box.style.top = position.y + 'px'
+  })
+  .onComplete(() => {
+    // In the onComplete callback we can run any script.
+    new JEASINGS.JEasing(position)
+      .to({ x: 0, y: 0 }, 1500)
+      .easing(JEASINGS.Bounce.Out)
+      .onUpdate(() => {
+        box.style.left = position.x + 'px'
+        box.style.top = position.y + 'px'
+      })
+      .start()
+  })
+  .start()
+```
+
+Edit on [SBEDIT](https://sbedit.net/c85742403bc15fb65d4a9a1a542517d761ae9e27)
+
+## JEasing Chain
+
+By using a combinaton of [onComplete](#jeasing-oncomplete-callback) and setting up your JEasings into variables before starting them, you can chain several JEasings together to then start in sequence, and also even set them to restart into a never ending loop.
+
+```javascript
+const part1 = new JEASINGS.JEasing(position)
+  .to({ x: 500, y: 250 }, 1500)
+  .delay(500)
+  .easing(JEASINGS.Quadratic.InOut)
+  .onComplete(() => {
+    part2.start() // Next start the part2 JEasing
+  })
+//.start()
+
+const part2 = new JEASINGS.JEasing(position)
+  .to({ x: 0, y: 0 }, 1500)
+  .easing(JEASINGS.Bounce.Out)
+  .onComplete(() => {
+    part1.start() // Go back to the part1 JEasing
+  })
+//.start()
+
+part1.start() // Start the JEasing chain.
+
+function animate() {
+  requestAnimationFrame(animate)
+
+  JEASINGS.update()
+
+  box.style.left = position.x + 'px'
+  box.style.top = position.y + 'px'
+}
+animate()
+```
+
+Edit on [SBEDIT](https://sbedit.net/41847bbdc3c05c3513956fdd4f5bc4c9309a2698)
 
 ## JEasing Curve Functions
 
