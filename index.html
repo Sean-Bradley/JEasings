@@ -4,7 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>JEASINGS Module</title>
-    <meta name="description" content="Using the JEASINGS module to animate a Div position." />
+    <meta
+      name="description"
+      content="Using the JEASINGS module to animate a Div position."
+    />
     <style>
       body {
         overflow: hidden;
@@ -23,25 +26,22 @@
   <body>
     <div id="box"></div>
     <script type="module">
-      import JEASINGS from './build/JEasings.js'
+      import JEASINGS from 'https://esm.sh/jeasings'
 
       const position = { x: 0, y: 0 } // Starting position.
 
-      new JEASINGS.JEasing(position, false) // Create a new JEasing that modifies the 'position' object.
+      new JEASINGS.JEasing(position) // Create a new JEasing that modifies the 'position' object.
         .to({ x: 500, y: 250 }, 1500) // Move to (500, 250) in one and a half seconds.
-        .easing(JEASINGS.Quadratic.InOut) // Optional. Use a curve function to change the speed over time.
-        .onUpdate(() => {
-          // Optional. Every time the JEasing is updated, do something such as re-position the box.
-          box.style.left = position.x + 'px'
-          box.style.top = position.y + 'px'
-        })
-        .delay(500) // Optional. Delay half a second before starting the JEasing.
         .start() // Start the JEasing.
 
       function animate() {
         requestAnimationFrame(animate)
 
         JEASINGS.update() // Update JEASINGS in an animation loop.
+
+        // Update Box position after JEASINGS were re-evalueated.
+        box.style.left = position.x + 'px'
+        box.style.top = position.y + 'px'
       }
       animate()
     </script>
