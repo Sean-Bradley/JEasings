@@ -80,7 +80,7 @@ Using the JEASINGS module to animate a HTML `div` position.
 
 Edit on [SBEDIT](https://sbedit.net/2d56b19d9ec89cfc6f4d3ed3910399ce7a2e2d41)
 
-## Add a Starting Delay
+### Add a Starting Delay
 
 ```javascript
 new JEASINGS.JEasing(position)
@@ -91,7 +91,7 @@ new JEASINGS.JEasing(position)
 
 Edit on [SBEDIT](https://sbedit.net/acba5631ee60e7276aca2db2b68c8170e5defd28)
 
-## Use a Curve Function
+### Use a Curve Function
 
 The default JEasing will run and finish at a constant speed. We can modify the speed as it progresses through the duration by setting the `easing` option.
 
@@ -105,7 +105,9 @@ new JEASINGS.JEasing(position)
 
 Edit on [SBEDIT](https://sbedit.net/dac36695782f4bf79358d0cd9db66dfc9141e622)
 
-## JEasing `onUpdate` callback.
+See more [JEasing Curve Functions](#jeasing-curve-functions)
+
+### JEasing `onUpdate` callback.
 
 We can run some code everytime a JEasing is re-evaluated. Example, we could update the Boxes position in the `onUpdate` callback instead of in the animation loop.
 
