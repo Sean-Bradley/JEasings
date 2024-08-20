@@ -25,7 +25,7 @@ npm install jeasings
 import JEASINGS from 'jeasings'
 ```
 
-### Example
+## Basic Example
 
 Using the JEASINGS module to animate a HTML `div` position.
 
@@ -59,21 +59,18 @@ Using the JEASINGS module to animate a HTML `div` position.
 
       const position = { x: 0, y: 0 } // Starting position.
 
-      new JEASINGS.JEasing(position, false) // Create a new JEasing that modifies the 'position' object.
+      new JEASINGS.JEasing(position) // Create a new JEasing that modifies the 'position' object.
         .to({ x: 500, y: 250 }, 1500) // Move to (500, 250) in one and a half seconds.
-        .easing(JEASINGS.Quadratic.InOut) // Optional. Use a curve function to change the speed over time.
-        .onUpdate(() => {
-          // Optional. Every time the JEasing is updated, do something such as re-position the box.
-          box.style.left = position.x + 'px'
-          box.style.top = position.y + 'px'
-        })
-        .delay(500) // Optional. Delay half a second before starting the JEasing.
         .start() // Start the JEasing.
 
       function animate() {
         requestAnimationFrame(animate)
 
         JEASINGS.update() // Update JEASINGS in an animation loop.
+
+        // Update Box position after JEASINGS were re-evalueated.
+        box.style.left = position.x + 'px'
+        box.style.top = position.y + 'px'
       }
       animate()
     </script>
@@ -83,27 +80,63 @@ Using the JEASINGS module to animate a HTML `div` position.
 
 Edit on [SBEDIT](https://sbedit.net/2d56b19d9ec89cfc6f4d3ed3910399ce7a2e2d41)
 
-### JEasing Curve Functions
+## Add a Starting Delay
 
-Default
-
-```
-.easing(JEASINGS.Linear.None)
-```
-
-Examples
-
-```
-.easing(JEASINGS.Quadratic.In)
+```javascript
+new JEASINGS.JEasing(position)
+  .to({ x: 500, y: 250 }, 1500)
+  .delay(500) // Optional. Delay half a second before starting the JEasing.
+  .start()
 ```
 
-```
-.easing(JEASINGS.Cubic.Out)
+Edit on [SBEDIT](https://sbedit.net/acba5631ee60e7276aca2db2b68c8170e5defd28)
+
+## Use a Curve Function
+
+The default JEasing will run and finish at a constant speed. We can modify the speed as it progresses through the duration by setting the `easing` option.
+
+```javascript
+new JEASINGS.JEasing(position)
+  .to({ x: 500, y: 250 }, 1500)
+  .delay(500)
+  .easing(JEASINGS.Quadratic.InOut) // Optional. Use can use a curve function to change the speed over time.
+  .start()
 ```
 
+Edit on [SBEDIT](https://sbedit.net/dac36695782f4bf79358d0cd9db66dfc9141e622)
+
+## JEasing `onUpdate` callback.
+
+We can run some code everytime a JEasing is re-evaluated. Example, we could update the Boxes position in the `onUpdate` callback instead of in the animation loop.
+
+```javascript
+new JEASINGS.JEasing(position)
+  .to({ x: 500, y: 250 }, 1500)
+  .delay(500)
+  .easing(JEASINGS.Quadratic.InOut)
+  .onUpdate(() => {
+    // Optional. Every time the JEasing is updated, do something such as re-position the box.
+    box.style.left = position.x + 'px'
+    box.style.top = position.y + 'px'
+  })
+  .start()
+
+function animate() {
+  requestAnimationFrame(animate)
+
+  JEASINGS.update()
+
+  // box.style.left = position.x + 'px'
+  // box.style.top = position.y + 'px'
+}
+animate()
 ```
-.easing(JEASINGS.Bounce.InOut)
-```
+
+Edit on [SBEDIT](https://sbedit.net/d6977245e64318a30356329d44bd900e4fd6ce38)
+
+## JEasing Curve Functions
+
+E.g., `.easing(JEASINGS.Quadratic.InOut)`
 
 ![JEasing Curve Functions](./docs/JEasing%20curve%20functions.jpg)
 
