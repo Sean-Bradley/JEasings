@@ -46,6 +46,7 @@ Using the JEASINGS module to animate a HTML `div` position.
 
       #box {
         background-color: hotpink;
+        position: absolute;
         width: 100px;
         height: 100px;
       }
@@ -63,7 +64,8 @@ Using the JEASINGS module to animate a HTML `div` position.
         .easing(JEASINGS.Quadratic.InOut) // Optional. Use a curve function to change the speed over time.
         .onUpdate(() => {
           // Optional. Every time the JEasing is updated, do something such as re-position the box.
-          box.style.setProperty('transform', 'translate(' + position.x + 'px, ' + position.y + 'px)')
+          box.style.left = position.x + 'px'
+          box.style.top = position.y + 'px'
         })
         .delay(500) // Optional. Delay half a second before starting the JEasing.
         .start() // Start the JEasing.
