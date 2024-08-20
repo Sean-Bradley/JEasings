@@ -141,7 +141,7 @@ Edit on [SBEDIT](https://sbedit.net/d6977245e64318a30356329d44bd900e4fd6ce38)
 
 ### JEasing `onComplete` callback.
 
-When a JEasing comnpletes, we can run another script. E.g, start a new JEasing.
+When a JEasing completes, we can run another script. E.g, start a new JEasing.
 
 ```javascript
 new JEASINGS.JEasing(position)
@@ -216,3 +216,13 @@ E.g., `.easing(JEASINGS.Quadratic.InOut)`
 [House (CDN Example)](https://sbedit.net/2820edac35dd5035904ca2bf60518d1c3a79d359)
 
 [JEasing Latitude Longitude](https://sbedit.net/50930f163a24650e0e84af66a8fbed8820a380b7)
+
+[JEasing OrbitControls Target in R3F](https://sbedit.net/5949b9663fb9aa758884e4590518e063cae4fbdd)
+
+[MapControls with Select Object to Zoom in](https://sbedit.net/275bc6b9c2206d0bf997e292d0d621e62d163bee)
+
+[Rubiks Cobe](https://sbedit.net/73a3f0f2cf85343e1f76281b132453e956da98d4)
+
+[Raycast to a Displacement Map](https://sbedit.net/651babdf65781950fb4f4e52589f416ad1378013)
+
+
