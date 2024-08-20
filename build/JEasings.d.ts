@@ -53,33 +53,25 @@ declare namespace JEASINGS {
         InOut: (v: number) => number;
     };
     class JEasing {
-        object: {
-            [key: string]: any;
-        };
-        id: number;
-        duration: number;
-        startTime: number;
-        delayStart: number;
-        startingProperties: {
-            [key: string]: number;
-        };
-        finalProperties: {
-            [key: string]: number;
-        };
-        deltaProperties: {
-            [key: string]: number;
-        };
-        easingFunction: (v: number) => number;
-        onUpdateCB: (() => void) | false;
-        onCompleteCB: (() => void) | false;
+        private object;
+        private id;
+        private duration;
+        private startTime;
+        private delayStart;
+        private startingProperties;
+        private finalProperties;
+        private deltaProperties;
+        private easingFunction;
+        private onUpdateCB;
+        private onCompleteCB;
         constructor(object: object);
         to: (properties: any, duration: number) => this;
         start: () => this;
         update: (t: number) => true | undefined;
         easing: (f: (v: number) => number) => this;
         delay: (t: number) => this;
-        onUpdate: (f: () => {}) => this;
-        onComplete: (f: () => {}) => this;
+        onUpdate: (f: () => void) => this;
+        onComplete: (f: () => void) => this;
     }
     const update: () => void;
     const getLength: () => number;

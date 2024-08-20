@@ -209,17 +209,17 @@ namespace JEASINGS {
   //#endregion "easings"
 
   export class JEasing {
-    object: { [key: string]: any } = {}
-    id = -1
-    duration = 1000
-    startTime = 0
-    delayStart = 0
-    startingProperties: { [key: string]: number } = {}
-    finalProperties: { [key: string]: number } = {}
-    deltaProperties: { [key: string]: number } = {}
-    easingFunction = Linear.None
-    onUpdateCB: (() => void) | false = false
-    onCompleteCB: (() => void) | false = false
+    private object: { [key: string]: any } = {}
+    private id = -1
+    private duration = 1000
+    private startTime = 0
+    private delayStart = 0
+    private startingProperties: { [key: string]: number } = {}
+    private finalProperties: { [key: string]: number } = {}
+    private deltaProperties: { [key: string]: number } = {}
+    private easingFunction = Linear.None
+    private onUpdateCB: (() => void) | false = false
+    private onCompleteCB: (() => void) | false = false
 
     constructor(object: object) {
       this.object = object
@@ -286,12 +286,12 @@ namespace JEASINGS {
       return this
     }
 
-    onUpdate = (f: () => {}) => {
+    onUpdate = (f: () => void) => {
       this.onUpdateCB = f
       return this
     }
 
-    onComplete = (f: () => {}) => {
+    onComplete = (f: () => void) => {
       this.onCompleteCB = f
       return this
     }
