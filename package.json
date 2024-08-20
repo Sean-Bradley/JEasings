@@ -1,10 +1,9 @@
 {
   "name": "jeasings",
-  "version": "0.0.2",
-  "description": "A JavaScript easing library",
+  "version": "0.0.3",
+  "description": "A JavaScript module for extrapolating numerical values over time",
   "homepage": "https://github.com/Sean-Bradley/JEasings",
-  "main": "./dist/JEeasings.js",
-  "module": "./dist/JEeasings.js",
+  "module": "./build/JEasings.js",
   "scripts": {
     "dev": "tsc -p ./src -w",
     "build": "tsc -p ./src --declaration"
