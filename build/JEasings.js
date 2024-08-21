@@ -221,6 +221,7 @@ var JEASINGS;
             this.easingFunction = JEASINGS.Linear.None;
             this.onUpdateCB = false;
             this.onCompleteCB = false;
+            this.chainedJEasing = null;
             this.to = (properties, duration) => {
                 if (duration !== null) {
                     this.duration = duration;
@@ -267,6 +268,7 @@ var JEASINGS;
                 if (elapsed === 1) {
                     delete jeasings[this.id];
                     this.onCompleteCB && this.onCompleteCB();
+                    this.chainedJEasing && this.chainedJEasing.start();
                 }
             };
             this.easing = (f) => {
@@ -283,6 +285,10 @@ var JEASINGS;
             };
             this.onComplete = (f) => {
                 this.onCompleteCB = f;
+                return this;
+            };
+            this.chain = (JEasing) => {
+                this.chainedJEasing = JEasing;
                 return this;
             };
             this.object = object;

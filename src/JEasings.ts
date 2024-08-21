@@ -220,6 +220,7 @@ namespace JEASINGS {
     private easingFunction = Linear.None
     private onUpdateCB: (() => void) | false = false
     private onCompleteCB: (() => void) | false = false
+    private chainedJEasing: JEasing | null = null
 
     constructor(object: object) {
       this.object = object
@@ -282,6 +283,8 @@ namespace JEASINGS {
       if (elapsed === 1) {
         delete jeasings[this.id]
         this.onCompleteCB && this.onCompleteCB()
+
+        this.chainedJEasing && this.chainedJEasing.start()
       }
     }
 
@@ -302,6 +305,11 @@ namespace JEASINGS {
 
     onComplete = (f: () => void) => {
       this.onCompleteCB = f
+      return this
+    }
+
+    chain = (JEasing: JEasing) => {
+      this.chainedJEasing = JEasing
       return this
     }
   }

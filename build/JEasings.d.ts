@@ -64,6 +64,7 @@ declare namespace JEASINGS {
         private easingFunction;
         private onUpdateCB;
         private onCompleteCB;
+        private chainedJEasing;
         constructor(object: object);
         to: (properties: any, duration: number) => this;
         start: () => this;
@@ -73,6 +74,7 @@ declare namespace JEASINGS {
         delay: (t: number) => this;
         onUpdate: (f: () => void) => this;
         onComplete: (f: () => void) => this;
+        chain: (JEasing: JEasing) => this;
     }
     const update: () => void;
     const getLength: () => number;
