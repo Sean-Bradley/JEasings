@@ -67,7 +67,8 @@ declare namespace JEASINGS {
         constructor(object: object);
         to: (properties: any, duration: number) => this;
         start: () => this;
-        update: (t: number) => true | undefined;
+        private postStart;
+        update: (t: number) => void;
         easing: (f: (v: number) => number) => this;
         delay: (t: number) => this;
         onUpdate: (f: () => void) => this;

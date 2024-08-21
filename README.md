@@ -221,7 +221,7 @@ E.g., `.easing(JEASINGS.Quadratic.InOut)`
 
 [MapControls with Select Object to Zoom in](https://sbedit.net/275bc6b9c2206d0bf997e292d0d621e62d163bee)
 
-[Rubiks Cobe](https://sbedit.net/73a3f0f2cf85343e1f76281b132453e956da98d4)
+[Rubiks Cube](https://sbedit.net/73a3f0f2cf85343e1f76281b132453e956da98d4)
 
 [Raycast to a Displacement Map](https://sbedit.net/651babdf65781950fb4f4e52589f416ad1378013)
 

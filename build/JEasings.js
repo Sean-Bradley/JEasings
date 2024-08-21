@@ -231,20 +231,29 @@ var JEASINGS;
                 return this;
             };
             this.start = () => {
-                this.startTime = new Date().getTime() + this.delayStart;
-                for (let property in this.finalProperties) {
-                    this.startingProperties[property] = this.object[property];
-                    this.deltaProperties[property] =
-                        this.finalProperties[property] - this.object[property];
+                this.startTime = new Date().getTime();
+                if (this.delayStart) {
+                    this.startTime += this.delayStart;
+                    setTimeout(() => this.postStart(), this.delayStart);
+                }
+                else {
+                    this.postStart();
                 }
                 this.id = id++;
                 jeasings[this.id] = this;
                 return this;
             };
+            this.postStart = () => {
+                for (let property in this.finalProperties) {
+                    this.startingProperties[property] = this.object[property];
+                    this.deltaProperties[property] =
+                        this.finalProperties[property] - this.object[property];
+                }
+            };
             this.update = (t) => {
                 let property, elapsed, value;
                 if (t < this.startTime) {
-                    return true;
+                    return;
                 }
                 elapsed = (t - this.startTime) / this.duration;
                 elapsed > 1 && (elapsed = 1);

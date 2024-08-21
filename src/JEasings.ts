@@ -237,12 +237,13 @@ namespace JEASINGS {
     }
 
     start = () => {
-      this.startTime = new Date().getTime() + this.delayStart
+      this.startTime = new Date().getTime()
 
-      for (let property in this.finalProperties) {
-        this.startingProperties[property] = this.object[property]
-        this.deltaProperties[property] =
-          this.finalProperties[property] - this.object[property]
+      if (this.delayStart) {
+        this.startTime += this.delayStart
+        setTimeout(() => this.postStart(), this.delayStart)
+      } else {
+        this.postStart()
       }
 
       this.id = id++
@@ -251,11 +252,19 @@ namespace JEASINGS {
       return this
     }
 
+    private postStart = () => {
+      for (let property in this.finalProperties) {
+        this.startingProperties[property] = this.object[property]
+        this.deltaProperties[property] =
+          this.finalProperties[property] - this.object[property]
+      }
+    }
+
     update = (t: number) => {
       let property, elapsed, value
 
       if (t < this.startTime) {
-        return true
+        return
       }
 
       elapsed = (t - this.startTime) / this.duration
