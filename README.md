@@ -213,6 +213,12 @@ E.g., `.easing(JEASINGS.Quadratic.InOut)`
 
 ### More Examples
 
+[JEasing Chain](https://sbcode.net/threejs/jeasing-chain/)
+
+[JEasing OrbitControls](https://sbcode.net/threejs/jeasing-orbit-controls/)
+
+[Kick Boxing](https://sbcode.net/threejs/kick-boxing/)
+
 [House (CDN Example)](https://sbedit.net/2820edac35dd5035904ca2bf60518d1c3a79d359)
 
 [JEasing Latitude Longitude](https://sbedit.net/50930f163a24650e0e84af66a8fbed8820a380b7)
@@ -224,5 +230,3 @@ E.g., `.easing(JEASINGS.Quadratic.InOut)`
 [Rubiks Cube](https://sbedit.net/73a3f0f2cf85343e1f76281b132453e956da98d4)
 
 [Raycast to a Displacement Map](https://sbedit.net/651babdf65781950fb4f4e52589f416ad1378013)
-
-

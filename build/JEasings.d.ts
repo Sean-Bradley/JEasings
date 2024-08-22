@@ -78,5 +78,7 @@ declare namespace JEASINGS {
     }
     const update: () => void;
     const getLength: () => number;
+    const removeAll: () => void;
+    const removeJEasing: (j: JEasing) => void;
 }
 export default JEASINGS;

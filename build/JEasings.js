@@ -305,5 +305,15 @@ var JEASINGS;
     JEASINGS.getLength = () => {
         return Object.keys(jeasings).length;
     };
+    JEASINGS.removeAll = () => {
+        Object.keys(jeasings).forEach((key) => delete jeasings[key]);
+    };
+    JEASINGS.removeJEasing = (j) => {
+        Object.keys(jeasings).forEach((key) => {
+            if (jeasings[key] === j) {
+                delete jeasings[key];
+            }
+        });
+    };
 })(JEASINGS || (JEASINGS = {}));
 export default JEASINGS;

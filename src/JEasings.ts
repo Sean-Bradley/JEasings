@@ -326,6 +326,18 @@ namespace JEASINGS {
   export const getLength = () => {
     return Object.keys(jeasings).length
   }
+
+  export const removeAll = () => {
+    Object.keys(jeasings).forEach((key) => delete jeasings[key])
+  }
+
+  export const removeJEasing = (j: JEasing) => {
+    Object.keys(jeasings).forEach((key) => {
+      if (jeasings[key] === j) {
+        delete jeasings[key]
+      }
+    })
+  }
 }
 
 export default JEASINGS
