@@ -168,9 +168,9 @@ new JEASINGS.JEasing(position)
 
 Edit on [SBEDIT](https://sbedit.net/c85742403bc15fb65d4a9a1a542517d761ae9e27)
 
-## JEasing Chain
+## JEasings as Variables
 
-By using a combinaton of [onComplete](#jeasing-oncomplete-callback) and setting up your JEasings into variables before starting them, you can chain several JEasings together to then start in sequence, and also even set them to restart into a never ending loop.
+You can create JEasings as variables first, and then start them later as needed.
 
 ```javascript
 const part1 = new JEASINGS.JEasing(position)
@@ -204,6 +204,31 @@ animate()
 ```
 
 Edit on [SBEDIT](https://sbedit.net/41847bbdc3c05c3513956fdd4f5bc4c9309a2698)
+
+## Chained JEasings
+
+Another way of chaining JEasings is to use the `chain()` method. Create several JEasings as varibles, and then use the `chain` keyword to sequence them. Then start one of them to begin the chain sequence.
+
+```javascript
+const slideRight = new JEASINGS.JEasing(position).to({ x: 500, y: 0 }, 1000)
+
+const slideDown = new JEASINGS.JEasing(position).to({ x: 500, y: 200 }, 1000)
+
+const slideLeft = new JEASINGS.JEasing(position).to({ x: 0, y: 200 }, 1000)
+
+const slideUp = new JEASINGS.JEasing(position).to({ x: 0, y: 0 }, 1000)
+
+slideRight.chain(slideDown)
+slideDown.chain(slideLeft)
+slideLeft.chain(slideUp)
+slideUp.chain(slideRight)
+
+slideRight.start() // Start the JEasing chain.
+```
+
+Edit on [SBEDIT](https://sbedit.net/1bca383c8461dbb375c9151c332e13dea2457678)
+
+##
 
 ## JEasing Curve Functions
 
