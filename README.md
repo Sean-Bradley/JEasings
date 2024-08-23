@@ -227,14 +227,14 @@ Edit on [SBEDIT](https://sbedit.net/1bca383c8461dbb375c9151c332e13dea2457678)
 
 ## Jeasing Destructering
 
-Instead of creating new JEasings using the syntax`new JEASINGS.Jeasing(...)`, you can destructer parts of the library into single variables.
+Instead of creating new JEasings using the syntax`new JEASINGS.Jeasing(...)`, you can destructure parts of the library into single variables.
 
 E.g.,
 
 ```javascript
 import JEASINGS from '/jeasings/JEasings.js'
 
-const { JEasing, Bounce } = JEASINGS // Desrtucture only what you need.
+const { JEasing, Bounce } = JEASINGS // Destructure only what you need.
 
 const position = { x: 0, y: 0 }
 
