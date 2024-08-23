@@ -16,7 +16,6 @@
     "url": "git+https://github.com/Sean-Bradley/JEasings.git"
   },
   "dependencies": {
-    "nodemon": "^3.1.4",
     "typescript": "^5.5.4"
   }
 }
