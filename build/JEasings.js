@@ -5,7 +5,7 @@
 // All changes below that differ from Tween r1 are Copyright (c) 2024 Sean Bradley.
 var JEASINGS;
 (function (JEASINGS) {
-    const jeasings = {};
+    const je = {};
     let id = -1;
     //#region "easings"
     JEASINGS.Linear = {
@@ -121,9 +121,7 @@ var JEASINGS;
             }
             else
                 s = (p / (2 * Math.PI)) * Math.asin(1 / a);
-            return -(a *
-                Math.pow(2, 10 * (v -= 1)) *
-                Math.sin(((v - s) * (2 * Math.PI)) / p));
+            return -(a * Math.pow(2, 10 * (v -= 1)) * Math.sin(((v - s) * (2 * Math.PI)) / p));
         },
         Out: (v) => {
             let s, a = 0.1, p = 0.4;
@@ -139,7 +137,7 @@ var JEASINGS;
             }
             else
                 s = (p / (2 * Math.PI)) * Math.asin(1 / a);
-            return (a * Math.pow(2, -10 * v) * Math.sin(((v - s) * (2 * Math.PI)) / p) + 1);
+            return a * Math.pow(2, -10 * v) * Math.sin(((v - s) * (2 * Math.PI)) / p) + 1;
         },
         InOut: (v) => {
             let s, a = 0.1, p = 0.4;
@@ -156,15 +154,8 @@ var JEASINGS;
             else
                 s = (p / (2 * Math.PI)) * Math.asin(1 / a);
             if ((v *= 2) < 1)
-                return (-0.5 *
-                    (a *
-                        Math.pow(2, 10 * (v -= 1)) *
-                        Math.sin(((v - s) * (2 * Math.PI)) / p)));
-            return (a *
-                Math.pow(2, -10 * (v -= 1)) *
-                Math.sin(((v - s) * (2 * Math.PI)) / p) *
-                0.5 +
-                1);
+                return -0.5 * (a * Math.pow(2, 10 * (v -= 1)) * Math.sin(((v - s) * (2 * Math.PI)) / p));
+            return a * Math.pow(2, -10 * (v -= 1)) * Math.sin(((v - s) * (2 * Math.PI)) / p) * 0.5 + 1;
         }
     };
     JEASINGS.Back = {
@@ -209,109 +200,106 @@ var JEASINGS;
     };
     //#endregion "easings"
     class JEasing {
-        constructor(object) {
-            this.object = {};
+        constructor(o) {
+            this.o = {}; // object
             this.id = -1;
-            this.duration = 1000;
-            this.startTime = 0;
-            this.delayStart = 0;
-            this.startingProperties = {};
-            this.finalProperties = {};
-            this.deltaProperties = {};
-            this.easingFunction = JEASINGS.Linear.None;
-            this.onUpdateCB = false;
-            this.onCompleteCB = false;
-            this.chainedJEasing = null;
-            this.to = (properties, duration) => {
-                if (duration !== null) {
-                    this.duration = duration;
+            this.d = 1000; // duration
+            this.st = 0; // start time
+            this.ds = 0; // delay start
+            this.sp = {}; // starting properties
+            this.fp = {}; // final properties
+            this.dp = {}; // delta properties
+            this.ec = JEASINGS.Linear.None; // easing curve
+            this.ucb = false; // update callback
+            this.ccb = false; // completed callback
+            this.cj = null; // chained JEasing
+            this.to = (p, d) => {
+                if (d !== null) {
+                    this.d = d;
                 }
-                for (let property in properties) {
-                    this.finalProperties[property] = properties[property];
+                for (let property in p) {
+                    this.fp[property] = p[property];
                 }
                 return this;
             };
             this.start = () => {
-                this.startTime = new Date().getTime();
-                if (this.delayStart) {
-                    this.startTime += this.delayStart;
-                    setTimeout(() => this.postStart(), this.delayStart);
+                this.st = new Date().getTime();
+                if (this.ds) {
+                    this.st += this.ds;
+                    setTimeout(() => this.postStart(), this.ds);
                 }
                 else {
                     this.postStart();
                 }
                 this.id = id++;
-                jeasings[this.id] = this;
+                je[this.id] = this;
                 return this;
             };
             this.postStart = () => {
-                for (let property in this.finalProperties) {
-                    this.startingProperties[property] = this.object[property];
-                    this.deltaProperties[property] =
-                        this.finalProperties[property] - this.object[property];
+                for (let property in this.fp) {
+                    this.sp[property] = this.o[property];
+                    this.dp[property] = this.fp[property] - this.o[property];
                 }
             };
             this.update = (t) => {
-                let property, elapsed, value;
-                if (t < this.startTime) {
+                let p, e, v; // property, elapsed, value
+                if (t < this.st) {
                     return;
                 }
-                elapsed = (t - this.startTime) / this.duration;
-                elapsed > 1 && (elapsed = 1);
-                value = this.easingFunction(elapsed);
-                for (property in this.deltaProperties) {
-                    this.object[property] =
-                        this.startingProperties[property] +
-                            this.deltaProperties[property] * value;
+                e = (t - this.st) / this.d;
+                e > 1 && (e = 1);
+                v = this.ec(e);
+                for (p in this.dp) {
+                    this.o[p] = this.sp[p] + this.dp[p] * v;
                 }
-                this.onUpdateCB && this.onUpdateCB();
-                if (elapsed === 1) {
-                    delete jeasings[this.id];
-                    this.onCompleteCB && this.onCompleteCB();
-                    this.chainedJEasing && this.chainedJEasing.start();
+                this.ucb && this.ucb();
+                if (e === 1) {
+                    delete je[this.id];
+                    this.ccb && this.ccb();
+                    this.cj && this.cj.start();
                 }
             };
             this.easing = (f) => {
-                this.easingFunction = f;
+                this.ec = f;
                 return this;
             };
             this.delay = (t) => {
-                this.delayStart = t;
+                this.ds = t;
                 return this;
             };
             this.onUpdate = (f) => {
-                this.onUpdateCB = f;
+                this.ucb = f;
                 return this;
             };
             this.onComplete = (f) => {
-                this.onCompleteCB = f;
+                this.ccb = f;
                 return this;
             };
-            this.chain = (JEasing) => {
-                this.chainedJEasing = JEasing;
+            this.chain = (j) => {
+                this.cj = j;
                 return this;
             };
-            this.object = object;
+            this.o = o;
         }
     }
     JEASINGS.JEasing = JEasing;
     let t = 0;
     JEASINGS.update = () => {
         t = new Date().getTime();
-        Object.keys(jeasings).forEach((j) => {
-            jeasings[j].update(t);
+        Object.keys(je).forEach((j) => {
+            je[j].update(t);
         });
     };
     JEASINGS.getLength = () => {
-        return Object.keys(jeasings).length;
+        return Object.keys(je).length;
     };
     JEASINGS.removeAll = () => {
-        Object.keys(jeasings).forEach((key) => delete jeasings[key]);
+        Object.keys(je).forEach((key) => delete je[key]);
     };
     JEASINGS.removeJEasing = (j) => {
-        Object.keys(jeasings).forEach((key) => {
-            if (jeasings[key] === j) {
-                delete jeasings[key];
+        Object.keys(je).forEach((key) => {
+            if (je[key] === j) {
+                delete je[key];
             }
         });
     };

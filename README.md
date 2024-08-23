@@ -36,10 +36,7 @@ Using the JEASINGS module to animate a HTML `div` position.
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>JEASINGS Module</title>
-    <meta
-      name="description"
-      content="Using the JEASINGS module to animate a Div position."
-    />
+    <meta name="description" content="Using the JEASINGS module to animate a Div position." />
     <style>
       body {
         overflow: hidden;

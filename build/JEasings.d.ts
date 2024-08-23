@@ -53,20 +53,22 @@ declare namespace JEASINGS {
         InOut: (v: number) => number;
     };
     class JEasing {
-        private object;
+        private o;
         private id;
-        private duration;
-        private startTime;
-        private delayStart;
-        private startingProperties;
-        private finalProperties;
-        private deltaProperties;
-        private easingFunction;
-        private onUpdateCB;
-        private onCompleteCB;
-        private chainedJEasing;
-        constructor(object: object);
-        to: (properties: any, duration: number) => this;
+        private d;
+        private st;
+        private ds;
+        private sp;
+        private fp;
+        private dp;
+        private ec;
+        private ucb;
+        private ccb;
+        private cj;
+        constructor(o: object);
+        to: (p: {
+            [key: string]: number;
+        }, d: number) => this;
         start: () => this;
         private postStart;
         update: (t: number) => void;
@@ -74,7 +76,7 @@ declare namespace JEASINGS {
         delay: (t: number) => this;
         onUpdate: (f: () => void) => this;
         onComplete: (f: () => void) => this;
-        chain: (JEasing: JEasing) => this;
+        chain: (j: JEasing) => this;
     }
     const update: () => void;
     const getLength: () => number;

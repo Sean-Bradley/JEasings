@@ -5,7 +5,7 @@
 // All changes below that differ from Tween r1 are Copyright (c) 2024 Sean Bradley.
 
 namespace JEASINGS {
-  const jeasings: { [key: string]: JEasing } = {}
+  const je: { [key: string]: JEasing } = {}
   let id = -1
 
   //#region "easings"
@@ -120,11 +120,7 @@ namespace JEASINGS {
         a = 1
         s = p / 4
       } else s = (p / (2 * Math.PI)) * Math.asin(1 / a)
-      return -(
-        a *
-        Math.pow(2, 10 * (v -= 1)) *
-        Math.sin(((v - s) * (2 * Math.PI)) / p)
-      )
+      return -(a * Math.pow(2, 10 * (v -= 1)) * Math.sin(((v - s) * (2 * Math.PI)) / p))
     },
     Out: (v: number) => {
       let s,
@@ -137,9 +133,7 @@ namespace JEASINGS {
         a = 1
         s = p / 4
       } else s = (p / (2 * Math.PI)) * Math.asin(1 / a)
-      return (
-        a * Math.pow(2, -10 * v) * Math.sin(((v - s) * (2 * Math.PI)) / p) + 1
-      )
+      return a * Math.pow(2, -10 * v) * Math.sin(((v - s) * (2 * Math.PI)) / p) + 1
     },
     InOut: (v: number) => {
       let s,
@@ -152,20 +146,8 @@ namespace JEASINGS {
         a = 1
         s = p / 4
       } else s = (p / (2 * Math.PI)) * Math.asin(1 / a)
-      if ((v *= 2) < 1)
-        return (
-          -0.5 *
-          (a *
-            Math.pow(2, 10 * (v -= 1)) *
-            Math.sin(((v - s) * (2 * Math.PI)) / p))
-        )
-      return (
-        a *
-          Math.pow(2, -10 * (v -= 1)) *
-          Math.sin(((v - s) * (2 * Math.PI)) / p) *
-          0.5 +
-        1
-      )
+      if ((v *= 2) < 1) return -0.5 * (a * Math.pow(2, 10 * (v -= 1)) * Math.sin(((v - s) * (2 * Math.PI)) / p))
+      return a * Math.pow(2, -10 * (v -= 1)) * Math.sin(((v - s) * (2 * Math.PI)) / p) * 0.5 + 1
     }
   }
 
@@ -209,107 +191,104 @@ namespace JEASINGS {
   //#endregion "easings"
 
   export class JEasing {
-    private object: { [key: string]: any } = {}
+    private o: { [key: string]: any } = {} // object
     private id = -1
-    private duration = 1000
-    private startTime = 0
-    private delayStart = 0
-    private startingProperties: { [key: string]: number } = {}
-    private finalProperties: { [key: string]: number } = {}
-    private deltaProperties: { [key: string]: number } = {}
-    private easingFunction = Linear.None
-    private onUpdateCB: (() => void) | false = false
-    private onCompleteCB: (() => void) | false = false
-    private chainedJEasing: JEasing | null = null
+    private d = 1000 // duration
+    private st = 0 // start time
+    private ds = 0 // delay start
+    private sp: { [key: string]: number } = {} // starting properties
+    private fp: { [key: string]: number } = {} // final properties
+    private dp: { [key: string]: number } = {} // delta properties
+    private ec = Linear.None // easing curve
+    private ucb: (() => void) | false = false // update callback
+    private ccb: (() => void) | false = false // completed callback
+    private cj: JEasing | null = null // chained JEasing
 
-    constructor(object: object) {
-      this.object = object
+    constructor(o: object) {
+      this.o = o
     }
 
-    to = (properties: any, duration: number) => {
-      if (duration !== null) {
-        this.duration = duration
+    to = (p: { [key: string]: number }, d: number) => {
+      if (d !== null) {
+        this.d = d
       }
 
-      for (let property in properties) {
-        this.finalProperties[property] = properties[property]
+      for (let property in p) {
+        this.fp[property] = p[property]
       }
       return this
     }
 
     start = () => {
-      this.startTime = new Date().getTime()
+      this.st = new Date().getTime()
 
-      if (this.delayStart) {
-        this.startTime += this.delayStart
-        setTimeout(() => this.postStart(), this.delayStart)
+      if (this.ds) {
+        this.st += this.ds
+        setTimeout(() => this.postStart(), this.ds)
       } else {
         this.postStart()
       }
 
       this.id = id++
-      jeasings[this.id] = this
+      je[this.id] = this
 
       return this
     }
 
     private postStart = () => {
-      for (let property in this.finalProperties) {
-        this.startingProperties[property] = this.object[property]
-        this.deltaProperties[property] =
-          this.finalProperties[property] - this.object[property]
+      for (let property in this.fp) {
+        this.sp[property] = this.o[property]
+        this.dp[property] = this.fp[property] - this.o[property]
       }
     }
 
     update = (t: number) => {
-      let property, elapsed, value
+      let p, e, v // property, elapsed, value
 
-      if (t < this.startTime) {
+      if (t < this.st) {
         return
       }
 
-      elapsed = (t - this.startTime) / this.duration
-      elapsed > 1 && (elapsed = 1)
+      e = (t - this.st) / this.d
+      e > 1 && (e = 1)
 
-      value = this.easingFunction(elapsed)
+      v = this.ec(e)
 
-      for (property in this.deltaProperties) {
-        this.object[property] =
-          this.startingProperties[property] +
-          this.deltaProperties[property] * value
+      for (p in this.dp) {
+        this.o[p] = this.sp[p] + this.dp[p] * v
       }
 
-      this.onUpdateCB && this.onUpdateCB()
-      if (elapsed === 1) {
-        delete jeasings[this.id]
-        this.onCompleteCB && this.onCompleteCB()
+      this.ucb && this.ucb()
+      if (e === 1) {
+        delete je[this.id]
+        this.ccb && this.ccb()
 
-        this.chainedJEasing && this.chainedJEasing.start()
+        this.cj && this.cj.start()
       }
     }
 
     easing = (f: (v: number) => number) => {
-      this.easingFunction = f
+      this.ec = f
       return this
     }
 
     delay = (t: number) => {
-      this.delayStart = t
+      this.ds = t
       return this
     }
 
     onUpdate = (f: () => void) => {
-      this.onUpdateCB = f
+      this.ucb = f
       return this
     }
 
     onComplete = (f: () => void) => {
-      this.onCompleteCB = f
+      this.ccb = f
       return this
     }
 
-    chain = (JEasing: JEasing) => {
-      this.chainedJEasing = JEasing
+    chain = (j: JEasing) => {
+      this.cj = j
       return this
     }
   }
@@ -318,23 +297,23 @@ namespace JEASINGS {
   export const update = () => {
     t = new Date().getTime()
 
-    Object.keys(jeasings).forEach((j) => {
-      jeasings[j].update(t)
+    Object.keys(je).forEach((j) => {
+      je[j].update(t)
     })
   }
 
   export const getLength = () => {
-    return Object.keys(jeasings).length
+    return Object.keys(je).length
   }
 
   export const removeAll = () => {
-    Object.keys(jeasings).forEach((key) => delete jeasings[key])
+    Object.keys(je).forEach((key) => delete je[key])
   }
 
   export const removeJEasing = (j: JEasing) => {
-    Object.keys(jeasings).forEach((key) => {
-      if (jeasings[key] === j) {
-        delete jeasings[key]
+    Object.keys(je).forEach((key) => {
+      if (je[key] === j) {
+        delete je[key]
       }
     })
   }
