@@ -227,7 +227,7 @@ Edit on [SBEDIT](https://sbedit.net/1bca383c8461dbb375c9151c332e13dea2457678)
 
 ## Jeasing Destructering
 
-Instead of creating new JEasings using the syntax`new JEASINGS.Jeasing(...)`, you can destructure parts of the library into single variables.
+Instead of creating new JEasings using the syntax `new JEASINGS.Jeasing(...)`, you can destructure parts of the library into single variables.
 
 E.g.,
 
@@ -268,3 +268,5 @@ E.g., `.easing(JEASINGS.Quadratic.InOut)`
 [Rubiks Cube](https://sbedit.net/73a3f0f2cf85343e1f76281b132453e956da98d4)
 
 [Raycast to a Displacement Map](https://sbedit.net/651babdf65781950fb4f4e52589f416ad1378013)
+
+[Three.js css3d - periodic table using JEASINGS](https://sbedit.net/90c9f6ba4d1b2eaf7c89674db1c66decba935acd)
