@@ -25,6 +25,12 @@ npm install jeasings
 import JEASINGS from 'jeasings'
 ```
 
+### Host Locally
+
+```javascript
+import JEASINGS from '/path/to/JEasings.js'
+```
+
 ## Basic Example
 
 Using the JEASINGS module to animate a HTML `div` position.
@@ -165,7 +171,7 @@ new JEASINGS.JEasing(position)
 
 Edit on [SBEDIT](https://sbedit.net/c85742403bc15fb65d4a9a1a542517d761ae9e27)
 
-## JEasings as Variables
+### JEasings as Variables
 
 You can create JEasings as variables first, and then start them later as needed.
 
@@ -202,7 +208,7 @@ animate()
 
 Edit on [SBEDIT](https://sbedit.net/41847bbdc3c05c3513956fdd4f5bc4c9309a2698)
 
-## Chained JEasings
+### Chained JEasings
 
 Another way of chaining JEasings is to use the `chain()` method. Create several JEasings as varibles, and then use the `chain` keyword to sequence them. Then start one of them to begin the chain sequence.
 
@@ -225,7 +231,7 @@ slideRight.start() // Start the JEasing chain.
 
 Edit on [SBEDIT](https://sbedit.net/1bca383c8461dbb375c9151c332e13dea2457678)
 
-## Jeasing Destructering
+### Jeasing Destructuring
 
 Instead of creating new JEasings using the syntax `new JEASINGS.Jeasing(...)`, you can destructure parts of the library into single variables.
 
@@ -249,7 +255,7 @@ E.g., `.easing(JEASINGS.Quadratic.InOut)`
 
 ![JEasing Curve Functions](./docs/JEasing%20curve%20functions.jpg)
 
-### More Examples
+## More Examples
 
 [JEasing Chain](https://sbcode.net/threejs/jeasing-chain/)
 
