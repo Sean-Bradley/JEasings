@@ -252,12 +252,13 @@ var JEASINGS;
                 for (p in this.dp) {
                     this.o[p] = this.sp[p] + this.dp[p] * v;
                 }
-                this.ucb && this.ucb();
+                this.ucb && this.ucb(this.o, e);
                 if (e === 1) {
                     delete je[this.id];
-                    this.ccb && this.ccb();
+                    this.ccb && this.ccb(this.o);
                     this.cj && this.cj.start();
                 }
+                return t;
             };
             this.easing = (f) => {
                 this.ec = f;

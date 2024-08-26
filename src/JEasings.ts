@@ -200,8 +200,8 @@ namespace JEASINGS {
     private fp: { [key: string]: number } = {} // final properties
     private dp: { [key: string]: number } = {} // delta properties
     private ec = Linear.None // easing curve
-    private ucb: (() => void) | false = false // update callback
-    private ccb: (() => void) | false = false // completed callback
+    private ucb: ((o: object, e: number) => void) | false = false // update callback
+    private ccb: ((o: object) => void) | false = false // completed callback
     private cj: JEasing | null = null // chained JEasing
 
     constructor(o: object) {
@@ -258,13 +258,15 @@ namespace JEASINGS {
         this.o[p] = this.sp[p] + this.dp[p] * v
       }
 
-      this.ucb && this.ucb()
+      this.ucb && this.ucb(this.o, e)
       if (e === 1) {
         delete je[this.id]
-        this.ccb && this.ccb()
+        this.ccb && this.ccb(this.o)
 
         this.cj && this.cj.start()
       }
+
+      return t
     }
 
     easing = (f: (v: number) => number) => {

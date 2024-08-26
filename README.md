@@ -270,3 +270,7 @@ E.g., `.easing(JEASINGS.Quadratic.InOut)`
 [Raycast to a Displacement Map](https://sbedit.net/651babdf65781950fb4f4e52589f416ad1378013)
 
 [Three.js css3d - periodic table using JEASINGS](https://sbedit.net/90c9f6ba4d1b2eaf7c89674db1c66decba935acd)
+
+[Three.js css3d - sprites using JEasings](https://sbedit.net/6de56d259819c032e3da4531ec74423e75b3f197)
+
+[Three.js webgl - collada - kinematics using JEasings](https://sbedit.net/a9f83a731ebc9ae5a31c8b2729341200f8a86aad)

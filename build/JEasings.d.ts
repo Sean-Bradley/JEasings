@@ -71,7 +71,7 @@ declare namespace JEASINGS {
         }, d: number) => this;
         start: () => this;
         private postStart;
-        update: (t: number) => void;
+        update: (t: number) => number | undefined;
         easing: (f: (v: number) => number) => this;
         delay: (t: number) => this;
         onUpdate: (f: () => void) => this;
