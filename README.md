@@ -257,6 +257,8 @@ E.g., `.easing(JEASINGS.Quadratic.InOut)`
 
 ## More Examples
 
+[Jeasings Easings](https://sbedit.net/c7103e5d9c810a964ddcdf33854eb0013246eb81)
+
 [JEasing Chain](https://sbcode.net/threejs/jeasing-chain/)
 
 [JEasing OrbitControls](https://sbcode.net/threejs/jeasing-orbit-controls/)
