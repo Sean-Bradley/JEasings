@@ -200,88 +200,88 @@ var JEASINGS;
     };
     //#endregion "easings"
     class JEasing {
+        o = {}; // object
+        id = -1;
+        d = 1000; // duration
+        st = 0; // start time
+        ds = 0; // delay start
+        sp = {}; // starting properties
+        fp = {}; // final properties
+        dp = {}; // delta properties
+        ec = JEASINGS.Linear.None; // easing curve
+        ucb = false; // update callback
+        ccb = false; // completed callback
+        cj = null; // chained JEasing
         constructor(o) {
-            this.o = {}; // object
-            this.id = -1;
-            this.d = 1000; // duration
-            this.st = 0; // start time
-            this.ds = 0; // delay start
-            this.sp = {}; // starting properties
-            this.fp = {}; // final properties
-            this.dp = {}; // delta properties
-            this.ec = JEASINGS.Linear.None; // easing curve
-            this.ucb = false; // update callback
-            this.ccb = false; // completed callback
-            this.cj = null; // chained JEasing
-            this.to = (p, d) => {
-                if (d !== null) {
-                    this.d = d;
-                }
-                for (let property in p) {
-                    this.fp[property] = p[property];
-                }
-                return this;
-            };
-            this.start = () => {
-                this.st = new Date().getTime();
-                if (this.ds) {
-                    this.st += this.ds;
-                    setTimeout(() => this.postStart(), this.ds);
-                }
-                else {
-                    this.postStart();
-                }
-                this.id = id++;
-                je[this.id] = this;
-                return this;
-            };
-            this.postStart = () => {
-                for (let property in this.fp) {
-                    this.sp[property] = this.o[property];
-                    this.dp[property] = this.fp[property] - this.o[property];
-                }
-            };
-            this.update = (t) => {
-                let p, e, v; // property, elapsed, value
-                if (t < this.st) {
-                    return;
-                }
-                e = (t - this.st) / this.d;
-                e > 1 && (e = 1);
-                v = this.ec(e);
-                for (p in this.dp) {
-                    this.o[p] = this.sp[p] + this.dp[p] * v;
-                }
-                this.ucb && this.ucb(this.o, e);
-                if (e === 1) {
-                    delete je[this.id];
-                    this.ccb && this.ccb(this.o);
-                    this.cj && this.cj.start();
-                }
-                return t;
-            };
-            this.easing = (f) => {
-                this.ec = f;
-                return this;
-            };
-            this.delay = (t) => {
-                this.ds = t;
-                return this;
-            };
-            this.onUpdate = (f) => {
-                this.ucb = f;
-                return this;
-            };
-            this.onComplete = (f) => {
-                this.ccb = f;
-                return this;
-            };
-            this.chain = (j) => {
-                this.cj = j;
-                return this;
-            };
             this.o = o;
         }
+        to = (p, d) => {
+            if (d !== null) {
+                this.d = d;
+            }
+            for (let property in p) {
+                this.fp[property] = p[property];
+            }
+            return this;
+        };
+        start = () => {
+            this.st = new Date().getTime();
+            if (this.ds) {
+                this.st += this.ds;
+                setTimeout(() => this.postStart(), this.ds);
+            }
+            else {
+                this.postStart();
+            }
+            this.id = id++;
+            je[this.id] = this;
+            return this;
+        };
+        postStart = () => {
+            for (let property in this.fp) {
+                this.sp[property] = this.o[property];
+                this.dp[property] = this.fp[property] - this.o[property];
+            }
+        };
+        update = (t) => {
+            let p, e, v; // property, elapsed, value
+            if (t < this.st) {
+                return;
+            }
+            e = (t - this.st) / this.d;
+            e > 1 && (e = 1);
+            v = this.ec(e);
+            for (p in this.dp) {
+                this.o[p] = this.sp[p] + this.dp[p] * v;
+            }
+            this.ucb && this.ucb(this.o, e);
+            if (e === 1) {
+                delete je[this.id];
+                this.ccb && this.ccb(this.o);
+                this.cj && this.cj.start();
+            }
+            return t;
+        };
+        easing = (f) => {
+            this.ec = f;
+            return this;
+        };
+        delay = (t) => {
+            this.ds = t;
+            return this;
+        };
+        onUpdate = (f) => {
+            this.ucb = f;
+            return this;
+        };
+        onComplete = (f) => {
+            this.ccb = f;
+            return this;
+        };
+        chain = (j) => {
+            this.cj = j;
+            return this;
+        };
     }
     JEASINGS.JEasing = JEasing;
     let t = 0;
