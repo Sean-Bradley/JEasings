@@ -7,6 +7,7 @@
 namespace JEASINGS {
   const je: { [key: string]: JEasing } = {}
   let id = -1
+  let t = 0
 
   //#region "easings"
 
@@ -295,7 +296,6 @@ namespace JEASINGS {
     }
   }
 
-  let t = 0
   export const update = () => {
     t = new Date().getTime()
 
@@ -320,5 +320,20 @@ namespace JEASINGS {
     })
   }
 }
+
+export const {
+  JEasing,
+  Linear,
+  Quadratic,
+  Cubic,
+  Quartic,
+  Quintic,
+  Sinusoidal,
+  Exponential,
+  Circular,
+  Elastic,
+  Back,
+  Bounce
+} = JEASINGS
 
 export default JEASINGS

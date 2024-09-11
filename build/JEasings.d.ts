@@ -83,4 +83,47 @@ declare namespace JEASINGS {
     const removeAll: () => void;
     const removeJEasing: (j: JEasing) => void;
 }
+export declare const JEasing: typeof JEASINGS.JEasing, Linear: {
+    None: (v: number) => number;
+}, Quadratic: {
+    In: (v: number) => number;
+    Out: (v: number) => number;
+    InOut: (v: number) => number;
+}, Cubic: {
+    In: (v: number) => number;
+    Out: (v: number) => number;
+    InOut: (v: number) => number;
+}, Quartic: {
+    In: (v: number) => number;
+    Out: (v: number) => number;
+    InOut: (v: number) => number;
+}, Quintic: {
+    In: (v: number) => number;
+    Out: (v: number) => number;
+    InOut: (v: number) => number;
+}, Sinusoidal: {
+    In: (v: number) => number;
+    Out: (v: number) => number;
+    InOut: (v: number) => number;
+}, Exponential: {
+    In: (v: number) => number;
+    Out: (v: number) => number;
+    InOut: (v: number) => number;
+}, Circular: {
+    In: (v: number) => number;
+    Out: (v: number) => number;
+    InOut: (v: number) => number;
+}, Elastic: {
+    In: (v: number) => number;
+    Out: (v: number) => number;
+    InOut: (v: number) => number;
+}, Back: {
+    In: (v: number) => number;
+    Out: (v: number) => number;
+    InOut: (v: number) => number;
+}, Bounce: {
+    In: (v: number) => number;
+    Out: (v: number) => number;
+    InOut: (v: number) => number;
+};
 export default JEASINGS;

@@ -7,6 +7,7 @@ var JEASINGS;
 (function (JEASINGS) {
     const je = {};
     let id = -1;
+    let t = 0;
     //#region "easings"
     JEASINGS.Linear = {
         None: (v) => {
@@ -284,7 +285,6 @@ var JEASINGS;
         };
     }
     JEASINGS.JEasing = JEasing;
-    let t = 0;
     JEASINGS.update = () => {
         t = new Date().getTime();
         Object.keys(je).forEach((j) => {
@@ -305,4 +305,5 @@ var JEASINGS;
         });
     };
 })(JEASINGS || (JEASINGS = {}));
+export const { JEasing, Linear, Quadratic, Cubic, Quartic, Quintic, Sinusoidal, Exponential, Circular, Elastic, Back, Bounce } = JEASINGS;
 export default JEASINGS;

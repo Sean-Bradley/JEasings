@@ -1,6 +1,6 @@
 {
   "name": "jeasings",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "description": "A JavaScript module for extrapolating numerical values over time",
   "homepage": "https://github.com/Sean-Bradley/JEasings",
   "main": "./build/JEasings.js",

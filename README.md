@@ -231,7 +231,7 @@ slideRight.start() // Start the JEasing chain.
 
 Edit on [SBEDIT](https://sbedit.net/1bca383c8461dbb375c9151c332e13dea2457678)
 
-### Jeasing Destructuring
+### JEasing Destructuring
 
 Instead of creating new JEasings using the syntax `new JEASINGS.Jeasing(...)`, you can destructure parts of the library into single variables.
 
@@ -248,6 +248,23 @@ const slideRight = new JEasing(position).to({ x: 500, y: 0 }, 1000).easing(Bounc
 ```
 
 Edit on [SBEDIT](https://sbedit.net/ee489f7ae0be2cf4569c0e7ab44117dba6591a2e)
+
+### Named Imports
+
+Instead of destructuring the JEASINGS imports, you can also used named imports for only what you need.
+
+E.g.,
+
+```javascript
+import JEASINGS, { JEasing, Bounce } from '/jeasings/JEasings.js'
+
+const position = { x: 0, y: 0 }
+
+const slideRight = new JEasing(position).to({ x: 500, y: 0 }, 1000).easing(Bounce.Out)
+```
+
+Edit on [SBEDIT](https://sbedit.net/430de176ee0e815ea81caa22ae49b27969ed9659)
+
 
 ## JEasing Curve Functions
 
