@@ -3,9 +3,7 @@
 A JavaScript module for extrapolating numerical values over time.
 
 > [!NOTE]
-> JEASINGS API based on Tween.js release 1 : https://github.com/sole/tween.js/blob/r1/src/Tween.js
->
-> See Tween.js r1 License at https://github.com/sole/tween.js/blob/r1/LICENSE
+> JEASINGS API based on Tween.js release 1 : https://github.com/sole/tween.js/blob/r1/src/Tween.js so the usage is very similar to using the original Tween.js.
 
 ## Usage
 
@@ -264,7 +262,6 @@ const slideRight = new JEasing(position).to({ x: 500, y: 0 }, 1000).easing(Bounc
 ```
 
 Edit on [SBEDIT](https://sbedit.net/430de176ee0e815ea81caa22ae49b27969ed9659)
-
 
 ## JEasing Curve Functions
 
