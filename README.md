@@ -3,7 +3,7 @@
 A JavaScript module for extrapolating numerical values over time.
 
 > [!NOTE]
-> JEASINGS API based on Tween.js release 1 : https://github.com/sole/tween.js/blob/r1/src/Tween.js so the usage is very similar to using the original Tween.js.
+> JEASINGS API based on Tween.js release 1 : https://github.com/sole/tween.js/blob/r1/src/Tween.js so the usage is very similar to using the Tween.js version 1.
 
 ## Usage
 
