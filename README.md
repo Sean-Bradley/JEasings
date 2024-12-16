@@ -271,28 +271,18 @@ E.g., `.easing(JEASINGS.Quadratic.InOut)`
 
 ## More Examples
 
-[Jeasings Easings](https://sbedit.net/c7103e5d9c810a964ddcdf33854eb0013246eb81)
-
-[JEasing Chain](https://sbcode.net/threejs/jeasing-chain/)
-
-[JEasing OrbitControls](https://sbcode.net/threejs/jeasing-orbit-controls/)
-
-[Kick Boxing](https://sbcode.net/threejs/kick-boxing/)
-
-[House (CDN Example)](https://sbedit.net/2820edac35dd5035904ca2bf60518d1c3a79d359)
-
-[JEasing Latitude Longitude](https://sbedit.net/50930f163a24650e0e84af66a8fbed8820a380b7)
-
-[JEasing OrbitControls Target in R3F](https://sbedit.net/5949b9663fb9aa758884e4590518e063cae4fbdd)
-
-[MapControls with Select Object to Zoom in](https://sbedit.net/275bc6b9c2206d0bf997e292d0d621e62d163bee)
-
-[Rubiks Cube](https://sbedit.net/73a3f0f2cf85343e1f76281b132453e956da98d4)
-
-[Raycast to a Displacement Map](https://sbedit.net/651babdf65781950fb4f4e52589f416ad1378013)
-
-[Three.js css3d - periodic table using JEASINGS](https://sbedit.net/90c9f6ba4d1b2eaf7c89674db1c66decba935acd)
-
-[Three.js css3d - sprites using JEasings](https://sbedit.net/6de56d259819c032e3da4531ec74423e75b3f197)
-
-[Three.js webgl - collada - kinematics using JEasings](https://sbedit.net/a9f83a731ebc9ae5a31c8b2729341200f8a86aad)
+| Example                                                                                                             | Thumbnail                           |
+| ------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| [Jeasings Easings](https://sbedit.net/c7103e5d9c810a964ddcdf33854eb0013246eb81)                                     | ![Easings](/docs/easings.jpg)       |
+| [JEasing Chain](https://sbcode.net/threejs/jeasing-chain/)                                                          | ![Easings](/docs/chain.jpg)         |
+| [JEasing OrbitControls](https://sbcode.net/threejs/jeasing-orbit-controls/)                                         | ![Easings](/docs/orbitcontrols.jpg) |
+| [Kick Boxing](https://sbcode.net/threejs/kick-boxing/)                                                              | ![Easings](/docs/kickboxing.jpg)    |
+| [House (CDN Example)](https://sbedit.net/2820edac35dd5035904ca2bf60518d1c3a79d359)                                  | ![Easings](/docs/house.jpg)         |
+| [JEasing Latitude Longitude](https://sbedit.net/50930f163a24650e0e84af66a8fbed8820a380b7)                           | ![Easings](/docs/latlon.jpg)        |
+| [JEasing OrbitControls Target in R3F](https://sbedit.net/5949b9663fb9aa758884e4590518e063cae4fbdd)                  | ![Easings](/docs/r3f-orbit.jpg)     |
+| [MapControls with Select Object to Zoom in](https://sbedit.net/275bc6b9c2206d0bf997e292d0d621e62d163bee)            | ![Easings](/docs/mapcontrols.jpg)   |
+| [Rubiks Cube](https://sbedit.net/73a3f0f2cf85343e1f76281b132453e956da98d4)                                          | ![Easings](/docs/rubiks.jpg)        |
+| [Raycast to a Displacement Map](https://sbedit.net/651babdf65781950fb4f4e52589f416ad1378013)                        | ![Easings](/docs/raycast.jpg)       |
+| [Three.js css3d - periodic table using JEASINGS](https://sbedit.net/90c9f6ba4d1b2eaf7c89674db1c66decba935acd)       | ![Easings](/docs/periodic.jpg)      |
+| [Three.js css3d - sprites using JEasings](https://sbedit.net/6de56d259819c032e3da4531ec74423e75b3f197)              | ![Easings](/docs/sprites.jpg)       |
+| [Three.js webgl - collada - kinematics using JEasings](https://sbedit.net/a9f83a731ebc9ae5a31c8b2729341200f8a86aad) | ![Easings](/docs/kinematic.jpg)     |
