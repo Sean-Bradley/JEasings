@@ -4,9 +4,7 @@ A JavaScript module for smoothly interpolating javascript numerical object prope
 
 ## Examples
 
-_CTRL+click to open links in new tab/window_
-
-| Link                                                                                                                | Thumbnail                           |
+| Link (use _CTRL+click to open links in new tab/window_)                                                                 | Thumbnail                           |
 | ------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
 | [Jeasings Easings](https://sbedit.net/c7103e5d9c810a964ddcdf33854eb0013246eb81)                                     | ![Easings](/docs/easings.jpg)       |
 | [JEasing Chain](https://sbcode.net/threejs/jeasing-chain/)                                                          | ![Easings](/docs/chain.jpg)         |
