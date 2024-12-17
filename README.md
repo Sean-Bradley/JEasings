@@ -6,9 +6,9 @@ A JavaScript module for smoothly animating javascript numerical object propertie
 
 | Link                                                                                                                | Thumbnail                           |
 | ------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
-| <a href="https://sbedit.net/c7103e5d9c810a964ddcdf33854eb0013246eb81" target="_blank">Jeasings Easings</a>         | ![Easings](/docs/easings.jpg)       |
+| <a href="https://sbedit.net/c7103e5d9c810a964ddcdf33854eb0013246eb81" target="_blank" rel="nofollow">Jeasings Easings</a>         | ![Easings](/docs/easings.jpg)       |
 | <a href="https://sbcode.net/threejs/jeasing-chain/" target="_blank">JEasing Chain</a>                              | ![Easings](/docs/chain.jpg)         |
-| [JEasing OrbitControls](https://sbcode.net/threejs/jeasing-orbit-controls/)                                         | ![Easings](/docs/orbitcontrols.jpg) |
+| [JEasing OrbitControls](https://sbcode.net/threejs/jeasing-orbit-controls/){:target="_blank"}                                         | ![Easings](/docs/orbitcontrols.jpg) |
 | [Kick Boxing](https://sbcode.net/threejs/kick-boxing/)                                                              | ![Easings](/docs/kickboxing.jpg)    |
 | [House (CDN Example)](https://sbedit.net/2820edac35dd5035904ca2bf60518d1c3a79d359)                                  | ![Easings](/docs/house.jpg)         |
 | [JEasing Latitude Longitude](https://sbedit.net/50930f163a24650e0e84af66a8fbed8820a380b7)                           | ![Easings](/docs/latlon.jpg)        |
