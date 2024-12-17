@@ -20,10 +20,9 @@ A JavaScript module for smoothly interpolating javascript numerical object prope
 | [Three.js css3d - sprites using JEasings](https://sbedit.net/6de56d259819c032e3da4531ec74423e75b3f197)              | ![Easings](/docs/sprites.jpg)       |
 | [Three.js webgl - collada - kinematics using JEasings](https://sbedit.net/a9f83a731ebc9ae5a31c8b2729341200f8a86aad) | ![Easings](/docs/kinematic.jpg)     |
 
-> [!NOTE]
-> JEASINGS based on the very early original Tween.js release v1 API : https://github.com/sole/tween.js/blob/r1/src/Tween.js.
-
 ## Usage
+
+Note that the JEASINGS API is inspired from the very early original release 1 of Tween.js : https://github.com/sole/tween.js/blob/r1/src/Tween.js
 
 ### CDN
 
